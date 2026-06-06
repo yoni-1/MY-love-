@@ -2,55 +2,51 @@
 <html lang="am">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Everything</title>
+    <title>For My Queen</title>
     <style>
-        body { margin: 0; padding: 0; background-color: #000; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; }
-        canvas { position: absolute; top: 0; left: 0; z-index: 0; }
-        #overlay { position: relative; z-index: 1; text-align: center; }
-        #myButton { padding: 15px 30px; font-size: 1.2rem; background: #d63384; color: white; border: none; border-radius: 50px; cursor: pointer; transition: 0.3s; }
-        #messageBox { display: none; margin-top: 20px; padding: 20px; background: rgba(255, 255, 255, 0.1); border-radius: 15px; color: #ffebf0; text-align: center; }
-        h1 { font-size: 1.5rem; margin: 0; }
+        body { margin: 0; background-color: #000; overflow: hidden; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        canvas { position: absolute; top: 0; left: 0; }
+        #container { position: relative; z-index: 10; text-align: center; color: white; }
+        button { padding: 20px 40px; font-size: 20px; background: #ff69b4; border: none; border-radius: 30px; color: white; cursor: pointer; }
+        #text { display: none; margin-top: 20px; font-size: 24px; background: rgba(255, 105, 180, 0.3); padding: 20px; border-radius: 20px; }
     </style>
 </head>
 <body>
 
-    <canvas id="heartCanvas"></canvas>
+<canvas id="c"></canvas>
 
-    <div id="overlay">
-        <button id="myButton" onclick="reveal()">My everything</button>
-        <div id="messageBox">
-            <h1>የኔ ልዕልት የኔ ንግስት የኔ ሁሉ ነገር</h1>
-            <p>ታውቂያለሽ እኔ እግዚአብሔርን በጣም ነው የምወድሽ</p>
-            <p>እሺ እናቴ የኔ ልዩ</p>
-        </div>
+<div id="container">
+    <button onclick="show()">My everything</button>
+    <div id="text">
+        <p>የኔ ልዕልት የኔ ንግስት የኔ ሁሉ ነገር</p>
+        <p>ታውቂያለሽ እኔ እግዚአብሔርን በጣም ነው የምወድሽ</p>
+        <p>እሺ እናቴ የኔ ልዩ</p>
     </div>
+</div>
 
-    <script>
-        const canvas = document.getElementById('heartCanvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+<script>
+    var c = document.getElementById("c");
+    var ctx = c.getContext("2d");
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
 
-        function animate() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            // የልብ ነጥቦች አኒሜሽን
-            ctx.fillStyle = '#ff69b4';
-            for (let i = 0; i < 20; i++) {
-                ctx.beginPath();
-                ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, 1.5, 0, Math.PI * 2);
-                ctx.fill();
-            }
-            requestAnimationFrame(animate);
+    function drawHeart() {
+        ctx.fillStyle = "rgba(0,0,0,0.1)";
+        ctx.fillRect(0,0, c.width, c.height);
+        ctx.fillStyle = "#ff69b4";
+        // የልብ ነጥቦች
+        for (let i = 0; i < 50; i++) {
+            let x = Math.random() * c.width;
+            let y = Math.random() * c.height;
+            ctx.fillRect(x, y, 2, 2);
         }
-        animate();
+        requestAnimationFrame(drawHeart);
+    }
+    drawHeart();
 
-        function reveal() {
-            document.getElementById('myButton').style.display = 'none';
-            document.getElementById('messageBox').style.display = 'block';
-        }
-    </script>
+    function show() {
+        document.getElementById("text").style.display = "block";
+    }
+</script>
 </body>
 </html>
