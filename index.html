@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { margin: 0; background-color: #ffcce0; overflow: hidden; height: 100vh; display: flex; justify-content: center; align-items: center; }
+        canvas { position: absolute; top: 0; left: 0; z-index: 1; }
+        
+        #overlay {
+            position: relative; z-index: 2; text-align: center; display: block;
+        }
+        
+        #message { display: none; color: #d63384; font-size: 2rem; font-weight: bold; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.2); }
+        
+        button { 
+            padding: 15px 30px; font-size: 1.5rem; background: #d63384; color: white; border: none; 
+            border-radius: 50px; cursor: pointer; transition: 0.3s;
+        }
+        button:hover { transform: scale(1.1); }
+    </style>
+</head>
+<body>
+
+    <canvas id="heartCanvas"></canvas>
+
+    <div id="overlay">
+        <button onclick="showMessage()">My everything</button>
+        <div id="message">
+            <p>የኔ ልዕልት የኔ ንግስት የኔ ሁሉ ነገር</p>
+            <p>ታውቂያለሽ እኔ እግዚአብሔርን በጣም ነው የምወድሽ እሺ እናቴ የኔ ልዩ</p>
+        </div>
+    </div>
+
+    <script>
+        // የልብ አኒሜሽን ኮድ
+        const canvas = document.getElementById('heartCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+
+        function animate() {
+            ctx.fillStyle = 'rgba(255, 204, 224, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // የልብ አኒሜሽን ሎጅክ እዚህ ይቀጥላል...
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // ጽሁፉን ለማሳየት
+        function showMessage() {
+            document.querySelector('button').style.display = 'none';
+            document.getElementById('message').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
